@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FactGenius: Unleashing Knowledge</title>
+    <link rel="icon" href="Bright_Colorful_Playful_Funny_Donuts_Food_Circle_Logo-removebg-preview.png">
+    
+    <style>
+       
+            @keyframes scale-in {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+            }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.notification {
+            position: relative;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            border-left: 6px solid;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .notification.info {
+            border-color: #3498db;
+            color: #3498db;
+        }
+
+        .notification.success {
+            border-color: #2ecc71;
+            color: #2ecc71;
+        }
+
+        .notification.warning {
+            border-color: #f39c12;
+            color: #f39c12;
+        }
+
+        .notification.error {
+            border-color: #e74c3c;
+            color: #e74c3c;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Header styles */
+header {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #333;
+    text-align: center;
+    padding: 2em 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1em;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #555;
+}
+
+/* Content section styles */
+.content-section {
+    padding: 4em 2em;
+    background-color: #fff;
+    margin: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    color: #FFD700;
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+p {
+    color: #666;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 1.5em;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #333;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background: linear-gradient(135deg, #FFA500, #FFD700);
+}
+
+/* Footer styles */
+footer {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #333;
+    text-align: center;
+    padding: 1em 0;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Chatbot styles */
+/* Add your chatbot styles here */
+
+/* Feedback form styles */
+#feedback-form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#feedback-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#feedback-message {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+#feedback-name {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+/* Responsive styles */
+@media (max-width: 768px) {
+    header img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            text-align: center;
+            padding: 2em 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin-bottom: 1em;
+        }
+
+        nav {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 1em 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 1em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #555;
+        }
+
+        .content-section {
+            padding: 4em 2em;
+            background-color: #fff;
+            margin: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+.auth-links {
+            padding: 4em 2em;
+            background-color: #fff;
+            margin: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+        h3 {
+            color: #FFD700;
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+
+        p {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 1.5em;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 1em 2em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #FFA500, #FFD700);
+        }
+
+        footer {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            text-align: center;
+            padding: 1em 0;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .additional-content {
+            display: none;
+        }
+
+        .read-more-button {
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        .expanded .read-more-button {
+            display: none;
+        }
+
+        .expanded .additional-content {
+            display: block;
+        }
+        /* Add this CSS to style the auth links with icons */
+
+.auth-links {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+.auth-links a i {
+    margin-right: 5px;
+}
+
+.auth-links a:hover {
+    background-color: #ddd;
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="Bright_Colorful_Playful_Funny_Donuts_Food_Circle_Logo-removebg-preview.png" alt="FactGenius Logo"
+        height="1000px" width="1000px">
+
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="test3.html">Image SE</a></li>
+            <li><a href="test7.html">Inventory</a></li>
+            <li><a href="#feedback-form">Feedback</a></li>
+            <li><a href="test4.html">More</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="content-section">
+        <h3>Discover, Learn, and Explore</h3>
+        <p>Welcome to FactGenius, where knowledge is not just learned; it's unleashed.</p>
+        <button id="welcome-btn" class="cta-button">Explore Now</button>
+    </section>
+
+    <br>
+    <section id="about" class="content-section">
+    <h3>🌐 About FactGenius</h3>
+    <p>Welcome to the digital playground of FactGenius Co.! We are not just a company; we are a hub of creativity, technology, and endless possibilities. At FactGenius Co., we pride ourselves on pioneering services that seamlessly blend intelligence, humor, and innovation.</p>
+    <h4>This website is made and operated by Diyaan Deepak Raj Kalra.</h4>
+<br>
+    <div class="additional-content">
+        <h4>🚀 What We Offer:</h4>
+        <p>
+            <strong>Chatbot Excellence:</strong> Dive into the world of intelligent conversations with our state-of-the-art chatbot technology. Whether you need assistance, information, or just a friendly chat, our chatbots are here to engage, assist, and make your online experience extraordinary.
+        </p>
+        <p>
+            <strong>AI Image Generation:</strong> Witness the magic of artificial intelligence as we transform pixels into art. Our AI image generation services bring your visions to life, creating stunning visuals that captivate and inspire. Let your creativity run wild, and let us handle the rest.
+        </p>
+        <p>
+            <strong>Random Facts Galore:</strong> Unleash your inner fact enthusiast! Explore a treasure trove of fascinating, obscure, and mind-boggling facts. Our random fact generator is your ticket to a daily dose of knowledge that will leave you amazed and enlightened.
+        </p>
+        <p>
+            <strong>Jokes That Spark Joy:</strong> Laughter is the best medicine, and our joke generator is your prescription for a healthy dose of humor. Enjoy a daily chuckle with our curated collection of jokes that span genres and tickle your funny bone.
+        </p>
+
+        <h4>🤖 Why FactGenius Co.? </h4>
+        <p>At FactGenius Co., we believe in pushing the boundaries of what technology can achieve while ensuring a delightful user experience. Our team of dedicated experts combines creativity with cutting-edge technology to deliver services that redefine the way you interact with the digital world.</p>
+
+        <h4>💡 Vision:</h4>
+        <p>Our vision is simple yet profound – to be the go-to platform for those who seek knowledge, creativity, and a touch of laughter in the digital realm. We envision a world where technology enhances every aspect of our lives, making learning, creating, and connecting more enjoyable and meaningful.</p>
+
+        <h4>🌐 Join Us on the Journey:</h4>
+        <p>Embark on a journey with FactGenius Co. as we explore the endless possibilities that the digital landscape has to offer. Join our community, and let's build a future where curiosity is celebrated, innovation is embraced, and intelligence is accessible to all.</p>
+
+        <h4>🚀 FactGenius Co. – Where Imagination Meets Reality!</h4>
+    </div>
+
+    <a href="javascript:void(0);" onclick="toggleReadMore()" class="read-more-button" id="read-more-link">Read More</a>
+    <script>
+        function toggleReadMore() {
+    var additionalContent = document.querySelector('.additional-content');
+    var readMoreButton = document.getElementById('read-more-link');
+
+    if (additionalContent.style.display === 'none' || additionalContent.style.display === '') {
+        additionalContent.style.display = 'block';
+        readMoreButton.textContent = 'Read Less';
+    } else {
+        additionalContent.style.display = 'none';
+        readMoreButton.textContent = 'Read More';
+    }
+}
+</script>
+</section>
+
+    </section>
+<br>
+    <section id="feedback" class="content-section">
+    <h3>Feedback</h3>
+    <p>We value your feedback! Please share your thoughts, suggestions, or any issues you encountered while using
+        our portal.</p>
+    <form id="feedback-form" action="send_feedback.php" method="post">
+        <label for="feedback-name">Name:</label>
+        <input type="text" id="feedback-name" name="feedback-name" required>
+        <label for="feedback-message">Message:</label>
+        <textarea id="feedback-message" name="feedback-message" rows="4" required></textarea>
+        <button type="submit" class="cta-button">Submit Feedback</button>
+    </form>
+</section>
+
+    <footer>
+        <p>&copy; 2024 FactGenius Co. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleReadMore() {
+            var additionalContent = document.querySelector('.additional-content');
+            var readMoreLink = document.getElementById('read-more-link');
+
+            if (additionalContent.style.display === 'none' || additionalContent.style.display === '') {
+                additionalContent.style.display = 'block';
+                readMoreLink.innerHTML = 'Read Less';
+                readMoreLink.parentElement.classList.add('expanded');
+            } else {
+                additionalContent.style.display = 'none';
+                readMoreLink.innerHTML = 'Read More';
+                readMoreLink.parentElement.classList.remove('expanded');
+            }
+        }
+
+        function showNotification(message, type = 'info', duration = 5000) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+
+            // Add close button
+            const closeButton = document.createElement('span');
+            closeButton.textContent = '×';
+            closeButton.className = 'close-btn';
+            closeButton.addEventListener('click', () => {
+                notification.remove();
+            });
+            notification.appendChild(closeButton);
+
+            // Append notification to the body
+            document.body.appendChild(notification);
+
+            // Remove notification after specified duration
+            if (duration > 0) {
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(-100%)';
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300); // 0.3s for fade out transition
+                }, duration);
+            }
+        }
+
+       
+        };
+    </script>
+    </script>
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+</body>
+
+</html>
+
+<script>
+/* To Disable Inspect Element */
+$(document).bind("contextmenu",function(e) {
+ e.preventDefault();
+});
+
+$(document).keydown(function(e){
+    if(e.which === 123){
+       return false;
+    }
+});
+</script>
+
+  
+<script>
+window.embeddedChatbotConfig = {
+chatbotId: "n4TskEs6T3fHrNVMIiQOq",
+domain: "www.chatbase.co"
+}
+</script>
+<script
+src="https://www.chatbase.co/embed.min.js"
+chatbotId="n4TskEs6T3fHrNVMIiQOq"
+domain="www.chatbase.co"
+defer>
+</script>

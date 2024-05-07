@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Bright_Colorful_Playful_Funny_Donuts_Food_Circle_Logo-removebg-preview.png">
+    <link rel="stylesheet" href="styles.css">
+    <title>FactGenius | Economy Game</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FactGenius | Economy Game</h1>
+            <div class="stats">
+                <p id="money">Money: $0</p>
+                <p id="items">Items: 0</p>
+            </div>
+        </header>
+        <section class="actions">
+            <button id="earnButton">Earn Money</button>
+            <button id="workButton">Work</button>
+            <button id="buyStockButton">Buy Stock</button>
+            <button id="sellItemsButton">Sell Items</button>
+            <button id="lotteryButton">Lottery</button>
+            <button id="jobUpgradeButton">Upgrade Job</button>
+            <button id="gambleButton">Gamble</button>
+            <button id="travelButton">Travel</button>
+            <button id="takeLoanButton">Take Loan</button>
+            <button id="investButton">Invest</button>
+        </section>
+        <section class="store">
+            <h2>Store</h2>
+            <ul id="itemList"></ul>
+        </section>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+header {
+    padding-bottom: 20px;
+}
+
+header h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.stats {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+    color: #fff;
+}
+
+.store {
+    margin-top: 30px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.store h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+#itemList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#itemList li {
+    background-color: #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#itemList li:hover {
+    background-color: #ccc;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let money = 0;
+    let items = 0;
+    let jobIncome = 0;
+    let loanDebt = 0;
+
+    const moneyDisplay = document.getElementById("money");
+    const itemsDisplay = document.getElementById("items");
+    const earnButton = document.getElementById("earnButton");
+    const workButton = document.getElementById("workButton");
+    const buyStockButton = document.getElementById("buyStockButton");
+    const sellItemsButton = document.getElementById("sellItemsButton");
+    const lotteryButton = document.getElementById("lotteryButton");
+    const jobUpgradeButton = document.getElementById("jobUpgradeButton");
+    const gambleButton = document.getElementById("gambleButton");
+    const travelButton = document.getElementById("travelButton");
+    const takeLoanButton = document.getElementById("takeLoanButton");
+    const investButton = document.getElementById("investButton");
+    const itemList = document.getElementById("itemList");
+
+    updateStatsDisplay();
+
+    earnButton.addEventListener("click", function() {
+        money += 10;
+        updateStatsDisplay();
+    });
+
+    workButton.addEventListener("click", function() {
+        const baseIncome = Math.floor(Math.random() * 20) + 10; // Random amount between 10 and 30
+        money += baseIncome + jobIncome;
+        updateStatsDisplay();
+    });
+
+    buyStockButton.addEventListener("click", function() {
+        const outcome = Math.random() < 0.5 ? 1 : -1; // 50% chance of profit or loss
+        const amount = Math.floor(Math.random() * 50) + 20; // Random amount between 20 and 70
+        money += outcome * amount;
+        updateStatsDisplay();
+    });
+
+    sellItemsButton.addEventListener("click", function() {
+        if (items > 0) {
+            const sellPrice = Math.floor(Math.random() * 15) + 5; // Random sell price between 5 and 20
+            money += sellPrice;
+            items--;
+            updateStatsDisplay();
+        } else {
+            alert("You don't have any items to sell!");
+        }
+    });
+
+    lotteryButton.addEventListener("click", function() {
+        if (Math.random() < 0.1) {
+            const lotteryWin = Math.floor(Math.random() * 200) + 100; // Random win between 100 and 300
+            money += lotteryWin;
+            updateStatsDisplay();
+            alert(`Congratulations! You won $${lotteryWin} in the lottery!`);
+        } else {
+            alert("Better luck next time! No win in the lottery.");
+        }
+    });
+
+    jobUpgradeButton.addEventListener("click", function() {
+        const upgradeCost = 50;
+        if (money >= upgradeCost) {
+            money -= upgradeCost;
+            jobIncome += 10; // Upgrade increases job income
+            updateStatsDisplay();
+        } else {
+            alert("Not enough money to upgrade your job!");
+        }
+    });
+
+    gambleButton.addEventListener("click", function() {
+        const gambleCost = 20;
+        if (money >= gambleCost) {
+            money -= gambleCost;
+            const gambleOutcome = Math.random() < 0.5 ? 1 : -1; // 50% chance of profit or loss
+            const gambleAmount = Math.floor(Math.random() * 30) + 10; // Random amount between 10 and 40
+            money += gambleOutcome * gambleAmount;
+            updateStatsDisplay();
+            alert(gambleOutcome === 1 ? "Congratulations! You won in the gamble!" : "Sorry, you lost in the gamble.");
+        } else {
+            alert("Not enough money to gamble!");
+        }
+    });
+
+    travelButton.addEventListener("click", function() {
+        const travelCost = 50;
+        if (money >= travelCost) {
+            money -= travelCost;
+            const travelOutcome = Math.random() < 0.7 ? 1 : -1; // 70% chance of discovering something interesting
+            const travelMessage = travelOutcome === 1
+                ? "You discovered a hidden treasure! You gained $100."
+                : "Your travel didn't yield any significant results.";
+            money += travelOutcome * 100;
+            updateStatsDisplay();
+            alert(travelMessage);
+        } else {
+            alert("Not enough money to travel!");
+        }
+    });
+
+    takeLoanButton.addEventListener("click", function() {
+        const loanAmount = Math.floor(Math.random() * 200) + 100; // Random loan amount between 100 and 300
+        const loanInterest = 0.2; // 20% interest on the loan
+        money += loanAmount;
+        loanDebt += loanAmount * loanInterest;
+        updateStatsDisplay();
+        alert(`You took a loan of $${loanAmount}. You'll need to repay $${loanDebt.toFixed(2)} with interest.`);
+    });
+
+    investButton.addEventListener("click", function() {
+        const investCost = 50;
+        if (money >= investCost) {
+            money -= investCost;
+            const investOutcome = Math.random() < 0.6 ? 1 : -1; // 60% chance of profit or loss
+            const investAmount = Math.floor(Math.random() * 80) + 20; // Random amount between 20 and 100
+            money += investOutcome * investAmount;
+            updateStatsDisplay();
+            alert(investOutcome === 1 ? "Your investment paid off! You gained a profit." : "Unfortunately, your investment didn't do well.");
+        } else {
+            alert("Not enough money to invest!");
+        }
+    });
+
+    const storeItems = [
+        { name: "Burger", cost: 15 },
+        { name: "Pizza", cost: 20 },
+        { name: "Cold Drink", cost: 25 },
+        { name: "Car", cost: 1000 },
+        { name: "Bike", cost: 100 },
+        { name: "Book", cost: 10 },
+        { name: "Pencil Box", cost: 21 }
+    ];
+
+    populateStore();
+
+    function populateStore() {
+        storeItems.forEach(item => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${item.name} - Cost: $${item.cost}`;
+            listItem.addEventListener("click", function() {
+                buyItem(item);
+            });
+            itemList.appendChild(listItem);
+        });
+    }
+
+    function buyItem(item) {
+        if (money >= item.cost) {
+            money -= item.cost;
+            items++;
+            updateStatsDisplay();
+        } else {
+            alert("Not enough money to buy this item!");
+        }
+    }
+
+    function updateStatsDisplay() {
+        moneyDisplay.textContent = `Money: $${money.toFixed(2)}`;
+        itemsDisplay.textContent = `Items: ${items}`;
+    }
+
+    // Timer to update the game state every 10 seconds
+    setInterval(function() {
+        workButton.click(); // Simulate a click on the work button
+    }, 10000);
+});
+</script>

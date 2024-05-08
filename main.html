@@ -8,6 +8,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FactGenius: Unleashing Knowledge</title>
     <link rel="icon" href="Bright_Colorful_Playful_Funny_Donuts_Food_Circle_Logo-removebg-preview.png">
+    <script>
+        let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    deferredPrompt = e;
+});
+        const installApp = document.getElementById('installApp');
+
+installApp.addEventListener('click', async () => {
+    if (deferredPrompt !== null) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            deferredPrompt = null;
+        }
+    }
+});
+        window.addEventListener('beforeinstallprompt', (e) => {
+    $('.install-app-btn-container').show();
+    deferredPrompt = e;
+});
+    </script>
+    <style>
+        .install-app-btn-container {
+  display: none;
+}
     
     <style>
        

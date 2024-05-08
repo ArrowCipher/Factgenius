@@ -55,32 +55,34 @@ form.addEventListener('submit', (event) => {
   const email = document.getElementById('email').value;
   const feedback = document.getElementById('feedback').value;
 
-  // Create the feedback data
-  const feedbackData = `Name: ${name}\nEmail: ${email}\nFeedback: ${feedback}\n\n`;
+  // Encrypt the form data
+  const encryptedData = encryptData(`Name: ${name}\nEmail: ${email}\nFeedback: ${feedback}`);
 
-  // Save the feedback data to a text file
-  saveToTextFile(feedbackData, 'feedbacks.txt');
+  // Save the encrypted data to a file
+  saveDataToFile(encryptedData, 'feedbacks.txt');
 
   // Reset the form
   form.reset();
 });
 
-function saveToTextFile(data, filename) {
+function encryptData(data) {
+  // Encrypt the data using a simple hexadecimal encoding
+  return data.split('').map(char => char.charCodeAt(0).toString(16)).join('');
+}
+
+function saveDataToFile(data, filename) {
+  // Create a new Blob with the encrypted data
   const blob = new Blob([data], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
 
-  // Create a temporary link element
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = filename;
+  // Create a temporary link element to trigger the file download
+  const tempLink = document.createElement('a');
+  tempLink.href = URL.createObjectURL(blob);
+  tempLink.setAttribute('download', filename);
+  tempLink.style.display = 'none';
 
-  // Append the link to the document
-  document.body.appendChild(link);
-
-  // Click the link to trigger the file download
-  link.click();
-
-  // Remove the temporary link element
-  document.body.removeChild(link);
+  // Append the link to the document, click it, and remove it
+  document.body.appendChild(tempLink);
+  tempLink.click();
+  document.body.removeChild(tempLink);
 }
 </script>

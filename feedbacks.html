@@ -1,0 +1,86 @@
+<form id="feedback-form">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="feedback">Feedback:</label>
+  <textarea id="feedback" name="feedback" rows="5" required></textarea>
+
+  <button type="submit">Submit Feedback</button>
+</form>
+<style>
+  #feedback-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#feedback-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#feedback-form input,
+#feedback-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#feedback-form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+</style>
+<script>
+  const form = document.getElementById('feedback-form');
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault(); // Prevent the default form submission
+
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const feedback = document.getElementById('feedback').value;
+
+  // Create the feedback data
+  const feedbackData = `Name: ${name}\nEmail: ${email}\nFeedback: ${feedback}\n\n`;
+
+  // Save the feedback data to a text file
+  saveToTextFile(feedbackData, 'feedbacks.txt');
+
+  // Reset the form
+  form.reset();
+});
+
+function saveToTextFile(data, filename) {
+  const blob = new Blob([data], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+
+  // Create a temporary link element
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+
+  // Append the link to the document
+  document.body.appendChild(link);
+
+  // Click the link to trigger the file download
+  link.click();
+
+  // Remove the temporary link element
+  document.body.removeChild(link);
+}
+</script>

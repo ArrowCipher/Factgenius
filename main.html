@@ -1,38 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
-    <div id="pwainstall">
-    <button id="pwainstall_button" class="square_btn">Add to Home Screen</button>
-</div>
-    <style>
-        #pwainstall {
-    display: none;
-}
-    </style>
-    <script>
-        var pwa4wp_open_install = function(){
-    console.log("install button show");
-    jQuery('#pwainstall').css('display','block');
-};
-document.getElementById("pwainstall_button").addEventListener("click",function(){
-    if(window.pwa4wp_installevent !== undefined ){
-        window.pwa4wp_installevent.prompt();
-        window.pwa4wp_installevent.userChoice.then(function(choiceResult){
-            if(choiceResult === 'accepted'){
-                // insert actions for installation accepted here
-                console.log('pwa installation accepted.')
-            }else{
-                // insert actions for installation refused here
-                console.log('pwa installation refused.')
-            }
-        });
-        window.pwa4wp_installevent = null;
-    }else{
-        console.log("install event is undefined");
-    }
-});
-    </script>
+
 
 <head>
     <meta charset="UTF-8">

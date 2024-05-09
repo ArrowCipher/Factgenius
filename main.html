@@ -418,6 +418,7 @@ footer {
 </nav>
 <style>
    /* Navigation Menu Styles */
+/* Navigation Menu Styles */
 .glorious-menu {
     list-style: none;
     padding: 0;
@@ -428,7 +429,7 @@ footer {
 }
 
 .glorious-menu li {
-    margin: 0 20px;
+    margin: 0 15px;
 }
 
 .glorious-menu a {
@@ -436,31 +437,35 @@ footer {
     color: #333;
     font-size: 1.2em;
     padding: 12px 24px;
-    border-radius: 40px;
+    border-radius: 30px;
     background-color: #FFA500;
     transition: background-color 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-transform: uppercase;
     font-weight: 600;
-    transition: transform 0.2s ease;
+    display: inline-block;
 }
 
 .glorious-menu a:hover {
     background-color: #FFD700;
-    transform: translateY(-2px);
 }
 
 /* Responsive Styling */
 @media (max-width: 768px) {
     .glorious-menu {
         flex-wrap: wrap;
+        justify-content: space-around;
     }
 
     .glorious-menu li {
-        margin: 10px;
+        margin: 10px 0;
+    }
+
+    .glorious-menu a {
+        padding: 10px 20px;
+        font-size: 1em;
     }
 }
-
 
 </style>
     <section id="home" class="content-section">

@@ -406,17 +406,45 @@ footer {
 
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="test3.html">Image SE</a></li>
-            <li><a href="test7.html">Inventory</a></li>
-            <li><a href="https://vakage.netlify.app/">Dictionary</a></li>
-            <li><a href="#feedback">Feedback</a></li>
-            <li><a href="test4.html">More</a></li>
-        </ul>
-    </nav>
+   <nav>
+    <ul class="glorious-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="test3.html">Image SE</a></li>
+        <li><a href="test7.html">Inventory</a></li>
+        <li><a href="https://vakage.netlify.app/">Dictionary</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="test4.html">More</a></li>
+    </ul>
+</nav>
+<style>
+    .glorious-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.glorious-menu li {
+    margin: 0 10px;
+}
+
+.glorious-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: #FFA500;
+    transition: background-color 0.3s ease;
+}
+
+.glorious-menu a:hover {
+    background-color: #FFD700;
+}
+
+</style>
     <section id="home" class="content-section">
         <h3>Discover, Learn, and Explore</h3>
         <p>Welcome to FactGenius, where knowledge is not just learned; it's unleashed.</p>

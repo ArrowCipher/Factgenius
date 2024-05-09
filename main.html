@@ -417,8 +417,7 @@ footer {
     </ul>
 </nav>
 <style>
-   /* Navigation Menu Styles */
-/* Navigation Menu Styles */
+ /* Navigation Menu Styles */
 .glorious-menu {
     list-style: none;
     padding: 0;
@@ -429,40 +428,42 @@ footer {
 }
 
 .glorious-menu li {
-    margin: 0 15px;
+    margin: 0 10px;
 }
 
 .glorious-menu a {
     text-decoration: none;
     color: #333;
-    font-size: 1.2em;
-    padding: 12px 24px;
-    border-radius: 30px;
-    background-color: #FFA500;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.1em;
+    padding: 8px 16px;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
     text-transform: uppercase;
     font-weight: 600;
-    display: inline-block;
+    border: 2px solid transparent;
 }
 
-.glorious-menu a:hover {
-    background-color: #FFD700;
+.glorious-menu a:hover,
+.glorious-menu a:focus {
+    background-color: #FFA500;
+    color: #fff;
+    border-color: #FFA500;
 }
 
 /* Responsive Styling */
 @media (max-width: 768px) {
     .glorious-menu {
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: center;
     }
 
     .glorious-menu li {
-        margin: 10px 0;
+        margin: 5px;
     }
 
     .glorious-menu a {
-        padding: 10px 20px;
+        padding: 8px 12px;
         font-size: 1em;
     }
 }
